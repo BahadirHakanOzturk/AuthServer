@@ -72,7 +72,7 @@ public class AuthenticationService : IAuthenticationService
 
 		if(rToken == null) return Response<TokenDto>.Fail("Refresh token not found.",404,true);
 
-		var user = await userManager.FindByIdAsync(token.UserId);
+		var user = await userManager.FindByIdAsync(rToken.UserId);
 
 		if (user == null) return Response<TokenDto>.Fail("User Id not found.", 404, true);
 
