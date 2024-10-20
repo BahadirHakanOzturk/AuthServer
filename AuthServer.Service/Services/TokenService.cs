@@ -85,7 +85,7 @@ internal class TokenService : ITokenService
 		return tokenDto;
 	}
 
-	public ClientTokenDto CreateTokenByClient(Client client)
+	public ClientTokenDto CreateClientToken(Client client)
 	{
 		var accessTokenExpiration = DateTime.Now.AddMinutes(tokenOption.AccessTokenExpiration);
 		var securityKey = SignService.GetSymmetricSecurityKey(tokenOption.SecurityKey);
