@@ -22,6 +22,7 @@ public class AuthenticationService : IAuthenticationService
 	public AuthenticationService(IOptions<List<Client>> optionsClient, ITokenService tokenService, UserManager<UserApp> userManager, IUnitOfWork unitOfWork, IGenericRepository<UserRefreshToken> userRefreshTokenRepository)
     {
         clients = optionsClient.Value;
+		this.tokenService = tokenService;
 		this.userManager = userManager;
 		this.unitOfWork = unitOfWork;
 		this.userRefreshTokenRepository = userRefreshTokenRepository;

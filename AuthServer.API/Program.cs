@@ -38,7 +38,7 @@ builder.Services.AddIdentity<UserApp, IdentityRole>(opt =>
 	opt.Password.RequireNonAlphanumeric = false;
 }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
-builder.Services.Configure<CustomTokenOption>(builder.Configuration.GetSection("TokenOption"));
+builder.Services.Configure<CustomTokenOption>(builder.Configuration.GetSection("TokenOptions"));
 builder.Services.Configure<List<Client>>(builder.Configuration.GetSection("Clients"));
 
 builder.Services.AddAuthentication(opt =>
@@ -47,7 +47,7 @@ builder.Services.AddAuthentication(opt =>
 	opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, opt =>
 {
-	var tokenOptions = builder.Configuration.GetSection("TokenOption").Get<CustomTokenOption>();
+	var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<CustomTokenOption>();
 	opt.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
 	{
 		ValidIssuer = tokenOptions.Issuer,
